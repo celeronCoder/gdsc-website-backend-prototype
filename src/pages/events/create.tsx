@@ -14,12 +14,12 @@ export default function EventCreatePage() {
   const eventCreateMutation = api.event.create.useMutation();
   const create = async () => {
     await eventCreateMutation.mutateAsync({
-      name: name!,
-      dateFrom: new Date(from!),
-      dateTill: new Date(to!),
-      tag: tag!,
+      name: name,
+      dateFrom: new Date(from),
+      dateTill: new Date(to),
+      tag: tag,
     });
-    router.push("/events");
+    await router.push("/events");
   };
   return (
     <div className="flex items-center justify-center p-10">
@@ -65,7 +65,7 @@ export default function EventCreatePage() {
           </div>
         </div>
         <button
-          onClick={create}
+          onClick={async () => void (await create())}
           className="rounded bg-indigo-600 py-2 px-5 text-white"
         >
           Create

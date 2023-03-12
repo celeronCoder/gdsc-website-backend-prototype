@@ -9,11 +9,13 @@ const Home: NextPage = () => {
     <div>
       <div>
         {status === "unauthenticated" ? (
-          <button onClick={() => signIn("github")}>login</button>
+          <button onClick={async () => void (await signIn("github"))}>
+            login
+          </button>
         ) : status === "loading" ? (
           <button>wait while I think</button>
         ) : (
-          <button onClick={() => signOut()}>logout</button>
+          <button onClick={async () => void (await signOut())}>logout</button>
         )}
       </div>
       <Link href="/events">see all events</Link>
